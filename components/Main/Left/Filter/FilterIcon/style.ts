@@ -2,10 +2,11 @@ import { css } from "@emotion/react";
 
 export const Positioner = css`
     height: 30px;
-    padding: 5px 12.5px 5px 12.5px;
-    line-height: 20px;
+    padding: 0vh 1vw 0vh 1vw;
     text-align: center;
+    line-height: 30px;
     border-radius: 30px;
     background-color: rgb(36, 36, 36);
     color: white;
+    font-size: 0.8vw;
 `
