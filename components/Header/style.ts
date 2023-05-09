@@ -3,7 +3,7 @@ import { css } from "@emotion/react";
 export const Positioner = css`
     width: 100%;
     height: 70px;
-    background-color: rgb(51, 51, 51);
+    background-color: rgb(50, 50, 50);
 `
 
 export const HeaderText = css`

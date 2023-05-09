@@ -10,8 +10,7 @@ export const Positioner = css`
 
 export const Positioner2 = css`
     width: calc(100% - 75px);
-    border-radius: 5px;
-    background-color: rgb(36, 36, 36);
+    font-weight: bold;
     display: flex;
     flex-direction: row;
 `
