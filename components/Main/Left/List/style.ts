@@ -1,9 +1,9 @@
 import { css } from "@emotion/react";
 
 export const Positioner = css`
-    width: calc(100% - 8vw);
-    height: calc(60% - 5vh);
-    margin: 0vh 4vw 5vh 4vw;
+    width: calc(100% - 2vw);
+    height: calc(80% - 4vh);
+    margin: 3.5vh 1vw 0.5vh 1vw;
     display: flex;
     flex-direction: column;
     overflow-y: scroll;

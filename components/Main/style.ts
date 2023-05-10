@@ -3,7 +3,7 @@ import { css } from "@emotion/react";
 export const BackGround = css`
     width: 100%;
     height: calc(100vh - 70px);
-    background-color: rgb(102, 102, 102);
+    background-color: rgb(20, 20, 20);
 `
 
 export const Left = css`
