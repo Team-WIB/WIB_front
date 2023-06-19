@@ -1,3 +1,4 @@
+import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 
 export const Positioner = css`
@@ -8,20 +9,13 @@ export const Positioner = css`
     flex-direction: column;
 `
 
-export const PointerLeft = css`
+export const PointerArrow = styled.div<{left: string}>`
     position: absolute;
     top: 60%;
-    left: 54%;
+    left: ${(props) => props.left};
     transform: translate(-50%, -50%);
     color: white;
-    font-size: 20px;
-`
-
-export const PointerRight = css`
-    position: absolute;
-    top: 60%;
-    left: 96%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-size: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
 `

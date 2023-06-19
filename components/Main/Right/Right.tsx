@@ -8,8 +8,8 @@ export default function Right() {
       <div css={S.Positioner}>
         <SelectItem />
         <SelectWrite />
-        <div css={S.PointerLeft}> &lt; </div>
-        <div css={S.PointerRight}> &gt; </div>
+        <S.PointerArrow left="53%">{"<"}</S.PointerArrow>
+        <S.PointerArrow left="97%">{">"}</S.PointerArrow>
       </div>
     )
   }
