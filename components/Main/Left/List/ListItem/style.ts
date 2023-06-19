@@ -9,4 +9,5 @@ export const ItemBox = css`
     background-color: rgb(50, 50, 50);
     font-size: calc(7.5px + 0.75vw);
     color: white;
+    cursor: pointer;
 `

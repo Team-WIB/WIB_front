@@ -32,6 +32,7 @@ export const IconBtn = css`
     justify-content: center;
     align-items: center;
     img{
+        cursor: pointer;
         width: 30px;
         height: 30px;
     }
