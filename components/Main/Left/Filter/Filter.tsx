@@ -1,15 +1,32 @@
 /** @jsxImportSource @emotion/react */
-import * as S from "./style"
-
+import * as S from "./style";
 import React, { useState } from "react";
 
 export default function Filter() {
+  const [chooseMajor, setChooseMajor] = useState("front");
+
   return (
-    <div css={S.Positioner}>
-      <div css={S.MojorFilter}>
-        <div css={S.ClickedFilter}>Front-End</div>
-        <div>Back-End</div>
-      </div>
-    </div>
-  )
+    <>
+      <S.Positioner>
+        <S.MajorFilter>
+          <S.ClickedFilter
+            major={chooseMajor === "front" ? "white" : "black"}
+            onClick={() => {
+              setChooseMajor("front");
+            }}
+          >
+            Front-End
+          </S.ClickedFilter>
+          <S.ClickedFilter
+            major={chooseMajor === "back" ? "white" : "black"}
+            onClick={() => {
+              setChooseMajor("back");
+            }}
+          >
+            Back-End
+          </S.ClickedFilter>
+        </S.MajorFilter>
+      </S.Positioner>
+    </>
+  );
 }
