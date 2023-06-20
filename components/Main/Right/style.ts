@@ -18,4 +18,5 @@ export const PointerArrow = styled.div<{left: string}>`
     font-size: 30px;
     font-weight: bold;
     cursor: pointer;
+    user-select: none;
 `
