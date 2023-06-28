@@ -1,26 +1,26 @@
-/** @jsxImportSource @emotion/react */
 import * as S from "./style";
-import React, { useState } from "react";
+import { useRecoilState } from "recoil";
+import { isListFilterFront } from "@/Atom/atoms";
 
 export default function Filter() {
-  const [chooseMajor, setChooseMajor] = useState("front");
+  const [isFront, setIsFront] = useRecoilState(isListFilterFront);
 
   return (
     <>
       <S.Positioner>
         <S.MajorFilter>
           <S.ClickedFilter
-            major={chooseMajor === "front" ? "white" : "black"}
+            major={isFront ? "white" : "black"}
             onClick={() => {
-              setChooseMajor("front");
+              setIsFront(false);
             }}
           >
             Front-End
           </S.ClickedFilter>
           <S.ClickedFilter
-            major={chooseMajor === "back" ? "white" : "black"}
+            major={isFront ? "black" : "white"}
             onClick={() => {
-              setChooseMajor("back");
+              setIsFront(true);
             }}
           >
             Back-End
