@@ -28,7 +28,7 @@ export default function List() {
       {Blogs?.questions ? (
         Blogs.questions.map(
           (item, idx) =>
-            (item.tag === "front") === isFront && (
+            (item.tag === "FE") === isFront && (
               <>
                 <ListItem key={idx} item={item.content} />
               </>
