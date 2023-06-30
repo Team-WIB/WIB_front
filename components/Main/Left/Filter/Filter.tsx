@@ -3,24 +3,24 @@ import { useRecoilState } from "recoil";
 import { isListFilterFront } from "@/Atom/atoms";
 
 export default function Filter() {
-  const [isFront, setIsFront] = useRecoilState(isListFilterFront);
+  const [isNotFront, setIsNotFront] = useRecoilState(isListFilterFront);
 
   return (
     <>
       <S.Positioner>
         <S.MajorFilter>
           <S.ClickedFilter
-            major={isFront ? "white" : "black"}
+            major={isNotFront ? "black" : "white"}
             onClick={() => {
-              setIsFront(false);
+              setIsNotFront(false);
             }}
           >
             Front-End
           </S.ClickedFilter>
           <S.ClickedFilter
-            major={isFront ? "black" : "white"}
+            major={isNotFront ? "white" : "black"}
             onClick={() => {
-              setIsFront(true);
+              setIsNotFront(true);
             }}
           >
             Back-End

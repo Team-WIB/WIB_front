@@ -9,7 +9,7 @@ import { isListFilterFront } from "@/Atom/atoms";
 
 export default function List() {
   const [Blogs, setBlogs] = useState<ListType>();
-  const [isFront, setIsFront] = useRecoilState(isListFilterFront);
+  const [isnotFront] = useRecoilState(isListFilterFront);
 
   useEffect(() => {
     async function getBlog() {
@@ -19,8 +19,8 @@ export default function List() {
       } catch (e: any) {
         console.error(e.message);
       }
-      getBlog();
     }
+    getBlog();
   }, []);
 
   return (
@@ -28,9 +28,9 @@ export default function List() {
       {Blogs?.questions ? (
         Blogs.questions.map(
           (item, idx) =>
-            (item.tag === "FE") === isFront && (
+            (item.tag !== "FE") === isnotFront && (
               <>
-                <ListItem key={idx} item={item.content} />
+                <ListItem key={idx} item={item.question} />
               </>
             )
         )

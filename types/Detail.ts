@@ -1,5 +1,5 @@
 export interface DetailType {
   id: number;
-  content: string;
+  question: string;
   tag: string;
 }
