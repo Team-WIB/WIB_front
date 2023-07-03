@@ -37,8 +37,8 @@ export default function SelectItem() {
   const AddFormClick = async () => {
     try {
       await customAxios.post("/questions", {
-        question: question,
-        answer: answer,
+        question: title,
+        answer: addFormAnswer,
         tag: major,
       });
     } catch (e: any) {
