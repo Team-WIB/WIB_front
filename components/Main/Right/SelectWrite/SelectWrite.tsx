@@ -1,23 +1,24 @@
 /** @jsxImportSource @emotion/react */
 import { useRecoilState } from "recoil";
 import * as S from "./style";
-import { AddFormAtom, FixFormAtom } from "@/Atom/atoms";
+import { AddFormAtom, FixFormAtom, AddFormAnswerAtom, Answer } from "@/Atom/atoms";
 import { useEffect, useState } from "react";
 
 export default function SelectWrite() {
   const [addForm, setAddForm] = useRecoilState(AddFormAtom);
   const [fixForm, setFixForm] = useRecoilState(FixFormAtom);
-  const [input, setInput] = useState('');
+  const [addFormAnswer, setAddFormAnswer] = useRecoilState(AddFormAnswerAtom);
+  const [answer, setAnswer] = useRecoilState(Answer);
 
   return (
     <div css={S.Positioner}>
       <div css={S.LookingWrite}>
         {addForm ? (
-          <S.InputBox />
+          <S.InputBox onChange={(e) => setAddFormAnswer(e.target.value)} value={addFormAnswer} />
         ) : fixForm ? (
-          <S.InputBox onChange={(e) => e.target.value}>자바스크립트 라이브러리</S.InputBox>
+          <S.InputBox onChange={(e) => setAnswer(e.target.value)} value={answer}>{answer}</S.InputBox>
         ) : (
-          <p>자바스크립트 라이브러리</p>
+          <p>{answer}</p>
         )}
       </div>
     </div>

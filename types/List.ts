@@ -1,5 +1,5 @@
-import { DetailType } from "./Detail";
+import { ListDetailType } from "./Detail";
 
 export interface ListType {
-  questions: DetailType[];
+  questions: ListDetailType[];
 }
