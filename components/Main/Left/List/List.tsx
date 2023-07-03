@@ -5,11 +5,26 @@ import { useEffect, useState } from "react";
 import { customAxios } from "@/Utils/customAxios";
 import { ListType } from "@/types/List";
 import { useRecoilState } from "recoil";
-import { isListFilterFront } from "@/Atom/atoms";
+import { Answer, Question, isListFilterFront } from "@/Atom/atoms";
+import useSWR from "swr";
 
-export default function List() {
+export default function List({ id }: { id: number }) {
   const [Blogs, setBlogs] = useState<ListType>();
   const [isnotFront] = useRecoilState(isListFilterFront);
+  const [question, setQuestion] = useRecoilState(Question);
+  const [answer, setAnswer] = useRecoilState(Answer);
+
+  const GetQuestion = async () => {
+    try {
+      const { data } = await customAxios.get(
+        "/questions" + window.location.pathname
+      );
+      setQuestion(data.question.question);
+      setAnswer(data.question.answer);
+    } catch (e: any) {
+      console.log(e.message);
+    }
+  };
 
   useEffect(() => {
     async function getBlog() {
@@ -23,6 +38,11 @@ export default function List() {
     getBlog();
   }, []);
 
+  const { data, error } = useSWR(
+    typeof window !== 'undefined' ? window.location.pathname : null,
+    GetQuestion
+  );
+
   return (
     <div css={S.Positioner}>
       {Blogs?.questions ? (
@@ -30,7 +50,9 @@ export default function List() {
           (item, idx) =>
             (item.tag !== "FE") === isnotFront && (
               <>
-                <ListItem key={idx} item={item.question} />
+                <div onClick={GetQuestion}>
+                  <ListItem key={idx} item={item.question} id={item.id} />
+                </div>
               </>
             )
         )
