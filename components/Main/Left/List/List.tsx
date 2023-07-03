@@ -8,11 +8,11 @@ import { useRecoilState } from "recoil";
 import { Answer, Question, isListFilterFront } from "@/Atom/atoms";
 import useSWR from "swr";
 
-export default function List({ id }: { id: number }) {
-  const [Blogs, setBlogs] = useState<ListType>();
+export default function List() {
   const [isnotFront] = useRecoilState(isListFilterFront);
   const [question, setQuestion] = useRecoilState(Question);
   const [answer, setAnswer] = useRecoilState(Answer);
+  const { data: Blogs } = useSWR<ListType>("/questions");
 
   const GetQuestion = async () => {
     try {
@@ -26,20 +26,8 @@ export default function List({ id }: { id: number }) {
     }
   };
 
-  useEffect(() => {
-    async function getBlog() {
-      try {
-        const { data } = await customAxios.get("/questions");
-        setBlogs(data);
-      } catch (e: any) {
-        console.error(e.message);
-      }
-    }
-    getBlog();
-  }, []);
-
   const { data, error } = useSWR(
-    typeof window !== 'undefined' ? window.location.pathname : null,
+    typeof window !== "undefined" ? window.location.pathname : null,
     GetQuestion
   );
 
