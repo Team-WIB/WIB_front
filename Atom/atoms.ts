@@ -5,6 +5,11 @@ export const AddFormAtom = atom<boolean>({
   default: false,
 });
 
+export const AddFormAnswerAtom = atom<string>({
+  key: "addFormAnswer",
+  default: "",
+})
+
 export const FixFormAtom = atom<boolean>({
   key: "fixForm",
   default: false,
@@ -13,4 +18,14 @@ export const FixFormAtom = atom<boolean>({
 export const isListFilterFront = atom<boolean>({
   key: "isListFilterFront",
   default: false,
+});
+
+export const Question = atom<string>({
+  key: "question",
+  default: "",
+});
+
+export const Answer = atom<string>({
+  key: "answer",
+  default: "",
 });
