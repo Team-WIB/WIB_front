@@ -14,7 +14,8 @@ import CrossIcon from "@/assests/CrossIcon";
 import AddIcon from "@/assests/AddIcon";
 import FixIcon from "@/assests/FixIcon";
 import { customAxios } from "@/Utils/customAxios";
-import useSWR from "swr";
+import useSWR, { useSWRConfig } from "swr";
+import { useRouter } from "next/router";
 
 export default function SelectItem() {
   const [addForm, setAddForm] = useRecoilState(AddFormAtom);
@@ -24,15 +25,15 @@ export default function SelectItem() {
   const [major, setMajor] = useState("FE");
   const [question, setQuestion] = useRecoilState(Question);
   const [answer, setAnswer] = useRecoilState(Answer);
+  const { mutate } = useSWRConfig();
+  const router = useRouter();
 
   useEffect(() => {
     if (addForm === false) {
       setTitle("");
       setAddFormAnswer("");
-      setMajor("FE");
     }
-    console.log(title, answer);
-  }, [addForm, title, answer]);
+  }, [addForm]);
 
   const AddFormClick = async () => {
     try {
@@ -41,6 +42,7 @@ export default function SelectItem() {
         answer: addFormAnswer,
         tag: major,
       });
+      mutate('/questions');
     } catch (e: any) {
       console.log(e.message);
     }
@@ -48,18 +50,18 @@ export default function SelectItem() {
 
   const FixFormClick = async () => {
     try {
-      await customAxios.put("/questions" + window.location.pathname, {
+      await customAxios.put("/questions" + router.pathname, {
         question: question,
         answer: answer,
         tag: major,
-      })
+      });
     } catch (e: any) {
       console.log(e.message);
     }
-  }
+  };
 
   const { data, error } = useSWR(
-    typeof window !== "undefined" ? window.location.pathname : null,
+    typeof window !== "undefined" ? router.pathname : null,
     AddFormClick
   );
 
@@ -74,7 +76,10 @@ export default function SelectItem() {
                 onChange={(e) => setTitle(e.target.value)}
               />
             ) : fixForm ? (
-              <S.TitleInput onChange={(e) => setQuestion(e.target.value)} value={question}>
+              <S.TitleInput
+                onChange={(e) => setQuestion(e.target.value)}
+                value={question}
+              >
                 {question}
               </S.TitleInput>
             ) : (
