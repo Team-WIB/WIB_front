@@ -50,7 +50,7 @@ export default function SelectItem() {
 
   const FixFormClick = async () => {
     try {
-      await customAxios.put("/questions" + router.pathname, {
+      await customAxios.put("/questions" + router.asPath, {
         question: question,
         answer: answer,
         tag: major,
@@ -96,8 +96,8 @@ export default function SelectItem() {
               {fixForm ? <CheckIcon onClick={FixFormClick} /> : <FixIcon />}
             </S.IconBtn>
           ) : (
-            <S.IconBtn className="cross" onClick={() => setAddForm(false)}>
-              <CrossIcon />
+            <S.IconBtn className="check" onClick={() => setAddForm(false)}>
+              <CheckIcon onClick={AddFormClick} />
             </S.IconBtn>
           )}
         </div>
@@ -112,7 +112,7 @@ export default function SelectItem() {
               setAddForm((pre) => !pre);
             }}
           >
-            {addForm ? <CheckIcon onClick={AddFormClick} /> : <AddIcon />}
+            {addForm ? <CrossIcon /> : <AddIcon />}
           </S.IconBtn>
         )}
       </div>
