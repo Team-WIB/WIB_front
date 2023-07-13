@@ -25,6 +25,8 @@ export default function SelectItem() {
   const [major, setMajor] = useState("FE");
   const [question, setQuestion] = useRecoilState(Question);
   const [answer, setAnswer] = useRecoilState(Answer);
+  const [cancelFixQu, setCancelFixQu] = useState(title);
+  const [cancelFixAn, setCancelFixAn] = useState(addFormAnswer);
   const { mutate } = useSWRConfig();
   const router = useRouter();
 
@@ -33,7 +35,8 @@ export default function SelectItem() {
       setTitle("");
       setAddFormAnswer("");
     }
-  }, [addForm]);
+    console.log(question);
+  }, [addForm, question]);
 
   const AddFormClick = async () => {
     try {
@@ -42,7 +45,7 @@ export default function SelectItem() {
         answer: addFormAnswer,
         tag: major,
       });
-      mutate('/questions');
+      mutate("/questions");
     } catch (e: any) {
       console.log(e.message);
     }
@@ -93,7 +96,16 @@ export default function SelectItem() {
                 setFixForm((pre) => !pre);
               }}
             >
-              {fixForm ? <CheckIcon onClick={FixFormClick} /> : <FixIcon />}
+              {fixForm ? (
+                <CheckIcon onClick={FixFormClick} />
+              ) : (
+                <FixIcon
+                  onClick={() => {
+                    setCancelFixQu(question);
+                    setCancelFixAn(answer);
+                  }}
+                />
+              )}
             </S.IconBtn>
           ) : (
             <S.IconBtn className="check" onClick={() => setAddForm(false)}>
@@ -103,7 +115,7 @@ export default function SelectItem() {
         </div>
         {fixForm ? (
           <S.IconBtn className="cross" onClick={() => setFixForm(false)}>
-            <CrossIcon />
+            <CrossIcon onClick={() => {setQuestion(cancelFixQu); setAnswer(cancelFixAn)}} />
           </S.IconBtn>
         ) : (
           <S.IconBtn

@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export const customAxios = axios.create({
-  baseURL: "http://ec2-3-39-199-70.ap-northeast-2.compute.amazonaws.com:8080/",
+  baseURL: "http://ec2-3-35-99-145.ap-northeast-2.compute.amazonaws.com:8080/",
 });

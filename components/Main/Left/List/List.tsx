@@ -45,7 +45,7 @@ export default function List() {
             )
         )
       ) : (
-        <p>loading...</p>
+        <p style={{color: "white"}}>loading...</p>
       )}
     </div>
   );
