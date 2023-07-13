@@ -7,6 +7,7 @@ const FixIcon = (props: React.SVGProps<SVGSVGElement>) => {
       strokeWidth="1.5"
       stroke="white"
       className="w-6 h-6"
+      {...props}
     >
       <path
         strokeLinecap="round"
