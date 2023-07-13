@@ -35,8 +35,7 @@ export default function SelectItem() {
       setTitle("");
       setAddFormAnswer("");
     }
-    console.log(question);
-  }, [addForm, question]);
+  }, [addForm]);
 
   const AddFormClick = async () => {
     try {
