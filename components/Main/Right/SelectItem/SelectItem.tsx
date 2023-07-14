@@ -6,7 +6,9 @@ import {
   AddFormAtom,
   Answer,
   FixFormAtom,
+  QuestCount,
   Question,
+  isListFilterFront,
 } from "@/Atom/atoms";
 import CheckIcon from "@/assests/CheckIcon";
 import { useEffect, useState } from "react";
@@ -29,6 +31,8 @@ export default function SelectItem() {
   const [cancelFixAn, setCancelFixAn] = useState(addFormAnswer);
   const { mutate } = useSWRConfig();
   const router = useRouter();
+  const [questCnt, setQuestCnt] = useRecoilState(QuestCount);
+  const [isFront, setIsFront] = useRecoilState(isListFilterFront);
 
   useEffect(() => {
     if (addForm === false) {
@@ -45,6 +49,7 @@ export default function SelectItem() {
         tag: major,
       });
       mutate("/questions");
+      setQuestCnt(questCnt + 1);
     } catch (e: any) {
       console.log(e.message);
     }
@@ -55,8 +60,9 @@ export default function SelectItem() {
       await customAxios.put("/questions" + router.asPath, {
         question: question,
         answer: answer,
-        tag: major,
+        tag: isFront === true ? "BE" : "FE",
       });
+      mutate("/questions");
     } catch (e: any) {
       console.log(e.message);
     }
