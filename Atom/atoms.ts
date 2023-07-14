@@ -8,7 +8,7 @@ export const AddFormAtom = atom<boolean>({
 export const AddFormAnswerAtom = atom<string>({
   key: "addFormAnswer",
   default: "",
-})
+});
 
 export const FixFormAtom = atom<boolean>({
   key: "fixForm",
@@ -28,4 +28,9 @@ export const Question = atom<string>({
 export const Answer = atom<string>({
   key: "answer",
   default: "",
+});
+
+export const QuestCount = atom<number>({
+  key: "questCount",
+  default: 0,
 });
